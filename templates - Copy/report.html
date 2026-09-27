@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Monthly Financial Report</h1>
+
+    <table style="margin:auto; width:80%;">
+        <tr>
+            <th>Item</th>
+            <th>Amount</th>
+        </tr>
+
+        <tr>
+            <td>Total Income</td>
+            <td>₹ {{ income }}</td>
+        </tr>
+
+        <tr>
+            <td>Total Expense</td>
+            <td>₹ {{ expense }}</td>
+        </tr>
+
+        <tr>
+            <td>Total Savings</td>
+            <td>₹ {{ savings }}</td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <h2>Expense Details</h2>
+
+    <table style="margin:auto; width:90%;">
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Amount</th>
+        </tr>
+
+        {% for item in expenses %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.category }}</td>
+            <td>₹ {{ item.amount }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+<br>
+<h2>Category Wise Summary</h2>
+
+<table style="margin:auto; width:70%;">
+
+    <tr>
+        <th>Category</th>
+        <th>Total</th>
+    </tr>
+
+    {% for category, total in category_data.items() %}
+    <tr>
+        <td>{{ category }}</td>
+        <td>₹ {{ total }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+    <br>
+
+    <a href="/dashboard" class="btn">Back Dashboard</a>
+
+</div>
+
+</body>
+</html>
